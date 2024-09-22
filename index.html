@@ -3,18 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random No Button</title>
-    <link rel="stylesheet" href="style.css"/>
+    <title>Special Message for You</title>
+    <style>
+        /* General body style */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #ffb3c6; /* Light pink background */
+        }
+
+        /* Centered message and GIF */
+        .message {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #d62828;
+            text-shadow: 2px 2px #fff;
+        }
+
+        img {
+            width: 300px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        /* Heart animation */
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #ff4d6d;
+            clip-path: polygon(50% 0%, 100% 40%, 75% 100%, 50% 75%, 25% 100%, 0% 40%);
+            animation: float 7s infinite;
+        }
+
+        /* Keyframes for heart floating animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* Random heart generation */
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(0.5);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="wrapper">
-        <h2 class="question">Do you love me?</h2>
-        <img class="gif" alt="gif" src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjJvdWZzYXc1NGJ6aGp1cDE3b2dyNnVzOGN1andkMjVrMmRzeGwwZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3OhXBaoR1tVPW/giphy.gif" />
-        <div class="btn-group">
-            <button class="yes-btn">Yes</button>
-            <button class="no-btn">No</button>
-        </div>
+
+    <!-- Message and GIF -->
+    <div class="message">
+        <h1>Hey [Ajeksander <3], sending you all my love! 😘</h1>
+        <img src="[X]" alt="Kissing GIF">
     </div>
-    <script src="script.js"></script>
+
+    <!-- Hearts animation -->
+    <div id="hearts-container"></div>
+
+    <script>
+        // Function to generate hearts at random positions
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            document.body.appendChild(heart);
+
+            const size = Math.random() * 50 + 20 + 'px'; // Random size for hearts
+            heart.style.width = size;
+            heart.style.height = size;
+            heart.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+            heart.style.animationDuration = Math.random() * 3 + 5 + 's'; // Random animation duration
+
+            setTimeout(() => {
+                heart.remove();
+            }, 7000); // Remove heart after animation completes
+        }
+
+        // Create hearts at an interval
+        setInterval(createHeart, 300);
+    </script>
+
 </body>
 </html>
